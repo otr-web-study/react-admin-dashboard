@@ -24,6 +24,10 @@ export default {
       borderColor: {
         color: 'rgba(0, 0, 0, 0.1)',
       },
+      colors: {
+        accent: '#03c9d7',
+        'accent-secondary': '#FB9678',
+      },
       width: {
         400: '400px',
         760: '760px',
@@ -48,4 +52,5 @@ export default {
     },
   },
   plugins: [],
+  safelist: ['text-green-600', 'text-red-600'],
 };

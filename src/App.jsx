@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
-import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { Tooltip } from 'antd';
 import './App.css';
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import {
@@ -32,15 +32,14 @@ const App = () => {
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4 z-[1000]">
-            <TooltipComponent content="Settings" position="TopCenter" target="#target">
+            <Tooltip title="Settings" placement="top" color="#555555">
               <button
                 type="button"
-                id="target"
-                className="text-3xl p-3 hover:drop-shadow-xl text-white bg-blue-600 rounded-full"
+                className="text-3xl p-3 hover:drop-shadow-xl text-white bg-accent rounded-full"
               >
                 <FiSettings />
               </button>
-            </TooltipComponent>
+            </Tooltip>
           </div>
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
