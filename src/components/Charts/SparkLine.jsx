@@ -11,6 +11,7 @@ const SparkLine = ({ height, width, data, color }) => {
     color,
     xAxis: {
       tickCount: 0,
+      line: { style: { lineWidth: 0 } },
     },
     yAxis: { tickCount: 0 },
     tooltip: {

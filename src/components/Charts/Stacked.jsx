@@ -16,6 +16,12 @@ const Stacked = ({ width, height }) => {
     seriesField: 'type',
     isStack: true,
     legend: false,
+    xAxis: { line: { style: { lineWidth: 0 } } },
+    yAxis: {
+      grid: {
+        line: null,
+      },
+    },
     interactions: [
       {
         type: 'active-region',
@@ -31,12 +37,8 @@ const Stacked = ({ width, height }) => {
         };
       },
     },
-    color: ({ type }) => {
-      if (type === 'Expense') {
-        return '#03c9d7';
-      }
-      return '#FB9678';
-    },
+    color: ({ type }) => (type === 'Expense' ? '#03c9d7' : '#FB9678'),
+    columnStyle: ({ type }) => ({ radius: type === 'Budget' ? [8, 8, 0, 0] : [0, 0, 0, 0] }),
   };
 
   return <Column {...config} />;
