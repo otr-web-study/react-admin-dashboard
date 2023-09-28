@@ -42,7 +42,7 @@ import product4 from './product4.jpg';
 import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
-// import product8 from './product8.jpg';
+import product8 from './product8.jpg';
 
 export const gridOrderImage = (_, record) => (
   <div>
@@ -69,17 +69,17 @@ export const kanbanGrid = [
 
   { headerText: 'Done', keyField: 'Close', allowToggle: true },
 ];
-const gridEmployeeProfile = (props) => (
+const gridEmployeeProfile = (_, record) => (
   <div className="flex items-center gap-2">
-    <img className="rounded-full w-10 h-10" src={props.EmployeeImage} alt="employee" />
-    <p>{props.Name}</p>
+    <img className="rounded-full w-10 h-10" src={record.EmployeeImage} alt="employee" />
+    <p>{record.Name}</p>
   </div>
 );
 
-const gridEmployeeCountry = (props) => (
+const gridEmployeeCountry = (_, record) => (
   <div className="flex items-center justify-center gap-2">
     <GrLocation />
-    <span>{props.Country}</span>
+    <span>{record.Country}</span>
   </div>
 );
 export const EditorData = () => (
@@ -414,15 +414,21 @@ export const customersGrid = [
 ];
 
 export const employeesGrid = [
-  { headerText: 'Employee', width: '150', template: gridEmployeeProfile, textAlign: 'Center' },
-  { field: 'Name', headerText: '', width: '0', textAlign: 'Center' },
-  { field: 'Title', headerText: 'Designation', width: '170', textAlign: 'Center' },
-  { headerText: 'Country', width: '120', textAlign: 'Center', template: gridEmployeeCountry },
+  {
+    title: 'Employee',
+    width: '150',
+    render: gridEmployeeProfile,
+    align: 'center',
+    fixed: 'left',
+  },
+  // { dataIndex: 'Name', title: '', width: '100', align: 'center' },
+  { dataIndex: 'Title', title: 'Designation', width: '170', align: 'center' },
+  { title: 'Country', width: '120', align: 'center', render: gridEmployeeCountry },
 
-  { field: 'HireDate', headerText: 'Hire Date', width: '135', format: 'yMd', textAlign: 'Center' },
+  { dataIndex: 'HireDate', title: 'Hire Date', width: '135', format: 'yMd', align: 'center' },
 
-  { field: 'ReportsTo', headerText: 'Reports To', width: '120', textAlign: 'Center' },
-  { field: 'EmployeeID', headerText: 'Employee ID', width: '125', textAlign: 'Center' },
+  { dataIndex: 'ReportsTo', title: 'Reports To', align: 'center' },
+  { dataIndex: 'EmployeeID', title: 'Employee ID', width: '80', align: 'center', fixed: 'right' },
 ];
 
 export const links = [
@@ -816,18 +822,19 @@ export const ordersGrid = [
     render: gridOrderImage,
     align: 'center',
     width: '120',
+    fixed: 'left',
   },
   {
     dataIndex: 'OrderItems',
     title: 'Item',
-    width: '150',
+    // width: '150',
     align: 'center',
     sorter: sorter('OrderItems'),
   },
   {
     dataIndex: 'CustomerName',
     title: 'Customer Name',
-    width: '150',
+    // width: '150',
     align: 'center',
     sorter: sorter('CustomerName'),
   },
@@ -836,7 +843,7 @@ export const ordersGrid = [
     title: 'Total Amount',
     format: 'C2',
     align: 'center',
-    width: '150',
+    // width: '150',
     sorter: sorter('TotalAmount'),
   },
   {
@@ -844,7 +851,7 @@ export const ordersGrid = [
     render: gridOrderStatus,
     dataIndex: 'OrderItems',
     align: 'center',
-    width: '120',
+    // width: '120',
     sorter: sorter('Status'),
   },
   {
@@ -858,7 +865,7 @@ export const ordersGrid = [
   {
     dataIndex: 'Location',
     title: 'Location',
-    width: '150',
+    // width: '150',
     align: 'center',
     sorter: sorter('Location'),
   },
@@ -2035,7 +2042,7 @@ export const ordersData = [
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: product4,
+    ProductImage: product8,
   },
   {
     OrderID: 845954,

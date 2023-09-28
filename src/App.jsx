@@ -51,7 +51,7 @@ const App = () => {
             </div>
           )}
           <div
-            className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${
+            className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-[calc(100%-18rem)] ${
               activeMenu ? 'md:ml-72' : 'flex-2'
             } `}
           >

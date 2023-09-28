@@ -1,5 +1,5 @@
 import { Table } from 'antd';
-import { ordersData, contextMenuItems, ordersGrid } from '../data/dummy';
+import { ordersData, ordersGrid } from '../data/dummy';
 import { Header } from '../components';
 
 const Orders = () => {
@@ -11,6 +11,7 @@ const Orders = () => {
         dataSource={ordersData}
         rowKey="OrderID"
         pagination={{ position: ['', 'bottomLeft'] }}
+        scroll={{ x: 900 }}
       />
     </div>
   );
