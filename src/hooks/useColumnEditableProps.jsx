@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Form, Input, InputNumber, Typography } from 'antd';
 
-export const useColumnEditableProps = (initialColumns, numericColumns) => {
+export const useColumnEditableProps = (initialColumns, numericColumns, data, setData) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const [columns, setColumns] = useState([]);
 
   if (!numericColumns) numericColumns = [];
 
@@ -114,23 +113,21 @@ export const useColumnEditableProps = (initialColumns, numericColumns) => {
     },
   ];
 
-  setColumns(
-    extColumns.map((col) => {
-      if (!col.editable) {
-        return col;
-      }
-      return {
-        ...col,
-        onCell: (record) => ({
-          record,
-          inputType: col.dataIndex === 'Weeks' ? 'number' : 'text',
-          dataIndex: col.dataIndex,
-          title: col.title,
-          editing: isEditing(record),
-        }),
-      };
-    }),
-  );
+  const columns = extColumns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        inputType: numericColumns.includes(col.dataIndex) ? 'number' : 'text',
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
 
-  return { columns, EditableCell, cancel };
+  return { columns, EditableCell, form, cancel };
 };
