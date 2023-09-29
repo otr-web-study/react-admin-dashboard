@@ -1,29 +1,12 @@
 import { useState } from 'react';
-import { Form, Input, InputNumber, Table, Typography } from 'antd';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import { customersData, customersGrid } from '../data/dummy';
-import { Header } from '../components';
+import { Form, Input, InputNumber, Typography } from 'antd';
 
-const Customers = () => {
-  const [data, setData] = useState(customersData);
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+export const useColumnEditableProps = (initialColumns, numericColumns) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
+  const [columns, setColumns] = useState([]);
 
-  const onSelectChange = (newSelectedRowKeys) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-  const hasSelected = selectedRowKeys.length > 0;
-
-  const handleDelete = () => {
-    setData(data.filter((row) => !selectedRowKeys.includes(row.CustomerID)));
-    setSelectedRowKeys([]);
-  };
+  if (!numericColumns) numericColumns = [];
 
   const EditableCell = ({
     editing,
@@ -94,8 +77,8 @@ const Customers = () => {
     }
   };
 
-  const columns = [
-    ...customersGrid,
+  const extColumns = [
+    ...initialColumns,
     {
       title: 'operation',
       dataIndex: 'operation',
@@ -131,50 +114,23 @@ const Customers = () => {
     },
   ];
 
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === 'Weeks' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
-
-  return (
-    <div className="flex flex-col m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Customers" />
-      <button
-        className="flex items-center gap-2 p-2 text-gray-600 self-start transition-colors duration-300 hover:text-accent disabled:text-gray-400"
-        disabled={!hasSelected}
-        onClick={handleDelete}
-      >
-        <RiDeleteBinLine />
-        Delete
-      </button>
-      <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          columns={mergedColumns}
-          dataSource={data}
-          rowSelection={rowSelection}
-          rowKey="CustomerID"
-          pagination={{ position: ['', 'bottomLeft'], onChange: cancel }}
-          scroll={{ x: 900 }}
-        />
-      </Form>
-    </div>
+  setColumns(
+    extColumns.map((col) => {
+      if (!col.editable) {
+        return col;
+      }
+      return {
+        ...col,
+        onCell: (record) => ({
+          record,
+          inputType: col.dataIndex === 'Weeks' ? 'number' : 'text',
+          dataIndex: col.dataIndex,
+          title: col.title,
+          editing: isEditing(record),
+        }),
+      };
+    }),
   );
-};
 
-export default Customers;
+  return { columns, EditableCell, cancel };
+};

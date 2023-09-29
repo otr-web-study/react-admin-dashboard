@@ -26,6 +26,7 @@ export default {
       },
       colors: {
         accent: '#03c9d7',
+        'accent-dark': '#267d83',
         'accent-secondary': '#FB9678',
       },
       width: {

@@ -119,20 +119,20 @@ export const EditorData = () => (
     </h3>
   </div>
 );
-const customerGridImage = (props) => (
+const customerGridImage = (_, record) => (
   <div className="image flex gap-4">
-    <img className="rounded-full w-10 h-10" src={props.CustomerImage} alt="employee" />
+    <img className="rounded-full w-10 h-10" src={record.CustomerImage} alt="employee" />
     <div>
-      <p>{props.CustomerName}</p>
-      <p>{props.CustomerEmail}</p>
+      <p>{record.CustomerName}</p>
+      <p>{record.CustomerEmail}</p>
     </div>
   </div>
 );
 
-const customerGridStatus = (props) => (
+const customerGridStatus = (_, record) => (
   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
-    <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
-    <p>{props.Status}</p>
+    <p style={{ background: record.StatusBg }} className="rounded-full h-3 w-3" />
+    <p>{record.Status}</p>
   </div>
 );
 export const areaPrimaryXAxis = {
@@ -382,34 +382,28 @@ export const LinePrimaryYAxis = {
 };
 
 export const customersGrid = [
-  { type: 'checkbox', width: '50' },
-  { headerText: 'Name', width: '150', template: customerGridImage, textAlign: 'Center' },
-  { field: 'ProjectName', headerText: 'Project Name', width: '150', textAlign: 'Center' },
+  { title: 'Name', width: 200, render: customerGridImage, align: 'center', fixed: 'left' },
+  { dataIndex: 'ProjectName', title: 'Project Name', align: 'center', editable: true },
   {
-    field: 'Status',
-    headerText: 'Status',
-    width: '130',
-    format: 'yMd',
-    textAlign: 'Center',
-    template: customerGridStatus,
+    dataIndex: 'Status',
+    title: 'Status',
+    align: 'center',
+    render: customerGridStatus,
   },
   {
-    field: 'Weeks',
-    headerText: 'Weeks',
-    width: '100',
-    format: 'C2',
-    textAlign: 'Center',
+    dataIndex: 'Weeks',
+    title: 'Weeks',
+    align: 'center',
+    editable: true,
   },
-  { field: 'Budget', headerText: 'Budget', width: '100', format: 'yMd', textAlign: 'Center' },
+  { dataIndex: 'Budget', title: 'Budget', align: 'center', editable: true },
 
-  { field: 'Location', headerText: 'Location', width: '150', textAlign: 'Center' },
+  { dataIndex: 'Location', title: 'Location', align: 'center', editable: true },
 
   {
-    field: 'CustomerID',
-    headerText: 'Customer ID',
-    width: '120',
-    textAlign: 'Center',
-    isPrimaryKey: true,
+    dataIndex: 'CustomerID',
+    title: 'Customer ID',
+    align: 'center',
   },
 ];
 
@@ -421,7 +415,6 @@ export const employeesGrid = [
     align: 'center',
     fixed: 'left',
   },
-  // { dataIndex: 'Name', title: '', width: '100', align: 'center' },
   { dataIndex: 'Title', title: 'Designation', width: '170', align: 'center' },
   { title: 'Country', width: '120', align: 'center', render: gridEmployeeCountry },
 
