@@ -91,11 +91,11 @@ export const useColumnEditableProps = (initialColumns, numericColumns, data, set
             <Typography.Link
               onClick={() => save(record.CustomerID)}
               style={{ marginRight: 8 }}
-              rootClassName="!text-accent hover:!text-accent-dark"
+              rootClassName="!text-gray-600 hover:!text-accent"
             >
               Save
             </Typography.Link>
-            <Typography.Link onClick={cancel} rootClassName="!text-accent hover:!text-accent-dark">
+            <Typography.Link onClick={cancel} rootClassName="!text-gray-600 hover:!text-accent">
               Cancel
             </Typography.Link>
           </span>
@@ -104,7 +104,7 @@ export const useColumnEditableProps = (initialColumns, numericColumns, data, set
             data-disabled={editingKey !== ''}
             disabled={editingKey !== ''}
             onClick={() => edit(record)}
-            rootClassName="data-[disabled='false']:!text-accent data-[disabled='false']:hover:!text-accent-dark"
+            rootClassName="data-[disabled='false']:!text-gray-600 data-[disabled='false']:hover:!text-accent"
           >
             Edit
           </Typography.Link>

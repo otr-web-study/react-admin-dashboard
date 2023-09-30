@@ -26,6 +26,7 @@ export default {
       },
       colors: {
         accent: '#03c9d7',
+        'accent-light': '#e6fffc',
         'accent-dark': '#267d83',
         'accent-secondary': '#FB9678',
       },
@@ -52,6 +53,10 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('child', '& > *');
+    },
+  ],
   safelist: ['text-green-600', 'text-red-600'],
 };
