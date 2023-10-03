@@ -14,7 +14,7 @@ import {
   MeasuringStrategy,
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, horizontalListSortingStrategy } from '@dnd-kit/sortable';
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 import { SectionItem, FieldItem } from './KanbanTask';
 
 export default function KanbanTasks({ tasks, columns }) {
@@ -30,15 +30,14 @@ export default function KanbanTasks({ tasks, columns }) {
     if (tasks) {
       setData(tasks);
       let cols = {};
-      columns.sort((a, b) => a.order - b.order);
       columns.forEach((c) => {
-        cols['column-' + c.id] = [];
+        cols['column-' + c.keyField] = [];
       });
       tasks.forEach((d) => {
-        if (!('column-' + d.col_id in cols)) {
-          cols['column-' + d.col_id] = [];
+        if (!('column-' + d.Status in cols)) {
+          cols['column-' + d.Status] = [];
         }
-        cols['column-' + d.col_id].push('task-' + d.id);
+        cols['column-' + d.Status].push('task-' + d.Id);
       });
       setItems(cols);
       setContainers(Object.keys(cols));
@@ -50,7 +49,7 @@ export default function KanbanTasks({ tasks, columns }) {
       const activeItems = items[activeContainer];
       const overItems = items[overContainer];
       const overIndex = overItems.indexOf(overId);
-      const activeIndex = activeItems.indexOf(active.id);
+      const activeIndex = activeItems.indexOf(active.Id);
 
       let newIndex;
 
@@ -69,15 +68,20 @@ export default function KanbanTasks({ tasks, columns }) {
       recentlyMovedToNewContainer.current = true;
 
       setItems(
-        update(items, {
-          [activeContainer]: {
-            $splice: [[activeIndex, 1]],
-          },
-          [overContainer]: {
-            $splice: [[newIndex, 0, active.id]],
-            //$splice: [[newIndex, 0, items[activeContainer][activeIndex]],
-          },
-        }),
+        // update(items, {
+        //   [activeContainer]: {
+        //     $splice: [[activeIndex, 1]],
+        //   },
+        //   [overContainer]: {
+        //     $splice: [[newIndex, 0, active.id]],
+        //     //$splice: [[newIndex, 0, items[activeContainer][activeIndex]],
+        //   },
+        // }),
+        {
+          ...items,
+          [activeContainer]: items.activeContainer.toSplice(activeIndex, 1),
+          [overContainer]: items.overContainer.toSplice(newIndex, 0, active.Id),
+        },
       );
     },
     [items],
@@ -97,7 +101,7 @@ export default function KanbanTasks({ tasks, columns }) {
         return closestCenter({
           ...args,
           droppableContainers: args.droppableContainers.filter(
-            (container) => container.id in items,
+            (container) => container.Id in items,
           ),
         });
       }
@@ -121,9 +125,9 @@ export default function KanbanTasks({ tasks, columns }) {
             overId = closestCenter({
               ...args,
               droppableContainers: args.droppableContainers.filter(
-                (container) => container.id !== overId && containerItems.includes(container.id),
+                (container) => container.Id !== overId && containerItems.includes(container.Id),
               ),
-            })[0]?.id;
+            })[0]?.Id;
           }
         }
 
@@ -177,17 +181,17 @@ export default function KanbanTasks({ tasks, columns }) {
   };
 
   function handleDragStart({ active }) {
-    setActiveId(active.id);
+    setActiveId(active.Id);
     setClonedItems(items);
   }
 
   function handleDragOver({ active, over }) {
-    const overId = over?.id;
+    const overId = over?.Id;
 
-    if (!overId || active.id in items) return;
+    if (!overId || active.Id in items) return;
 
     const overContainer = findContainer(overId);
-    const activeContainer = findContainer(active.id);
+    const activeContainer = findContainer(active.Id);
 
     if (!overContainer || !activeContainer) return;
 
@@ -202,27 +206,27 @@ export default function KanbanTasks({ tasks, columns }) {
       return;
     }
 
-    if (active.id in items && over?.id) {
+    if (active.Id in items && over?.Id) {
       setContainers((containers) => {
-        const activeIndex = containers.indexOf(active.id);
-        const overIndex = containers.indexOf(over.id);
+        const activeIndex = containers.indexOf(active.Id);
+        const overIndex = containers.indexOf(over.Id);
 
         return arrayMove(containers, activeIndex, overIndex);
       });
     }
 
-    const activeContainer = findContainer(active.id);
+    const activeContainer = findContainer(active.Id);
 
     if (!activeContainer) {
       setActiveId(null);
       return;
     }
 
-    const overContainer = findContainer(over.id);
+    const overContainer = findContainer(over.Id);
 
     if (overContainer) {
-      const activeIndex = items[activeContainer].indexOf(active.id);
-      const overIndex = items[overContainer].indexOf(over.id);
+      const activeIndex = items[activeContainer].indexOf(active.Id);
+      const overIndex = items[overContainer].indexOf(over.Id);
 
       if (activeIndex !== overIndex) {
         setItems((items) => ({
@@ -275,7 +279,7 @@ export default function KanbanTasks({ tasks, columns }) {
                   id={containerId}
                   key={containerId}
                   items={items[containerId]}
-                  name={columns.filter((c) => 'column-' + c.id === containerId)[0].name}
+                  name={columns.filter((c) => 'column-' + c.keyField === containerId)[0].headerText}
                   data={data}
                   isSortingContainer={isSortingContainer}
                 />
@@ -289,14 +293,14 @@ export default function KanbanTasks({ tasks, columns }) {
               <SectionItem
                 id={activeId}
                 items={items[activeId]}
-                name={columns.filter((c) => 'column-' + c.id === activeId)[0].name}
+                name={columns.filter((c) => 'column-' + c.keyField === activeId)[0].headerText}
                 data={data}
                 dragOverlay
               />
             ) : (
               <FieldItem
                 id={activeId}
-                item={data.filter((d) => 'task-' + d.id === activeId)[0]}
+                item={data.filter((d) => 'task-' + d.Id === activeId)[0]}
                 dragOverlay
               />
             )

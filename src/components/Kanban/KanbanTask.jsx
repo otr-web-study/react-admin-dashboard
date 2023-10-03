@@ -1,6 +1,6 @@
 import { useSortable, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Avatar, Row, Col, Button, Badge, Space } from 'antd';
+import { Row, Col, Button, Badge } from 'antd';
 
 // Column
 export const SectionItem = (props) => {
@@ -45,13 +45,7 @@ export const SectionItem = (props) => {
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      className="kanban-column"
-      style={style}
-      //{...attributes}
-      //{...listeners}
-    >
+    <div ref={setNodeRef} className="kanban-column" style={style}>
       <div
         ref={setActivatorNodeRef}
         {...attributes}
@@ -73,10 +67,7 @@ export const SectionItem = (props) => {
         />
       </div>
       <div className="kanban-column-list">
-        <SortableContext
-          items={items}
-          strategy={verticalListSortingStrategy} // verticalListSortingStrategy rectSortingStrategy
-        >
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
           {items.map((item, _index) => {
             return (
               <FieldItem
@@ -92,7 +83,7 @@ export const SectionItem = (props) => {
       <div className="kanban-column-footer">
         <Button
           type="text"
-          icon={<PlusOutlined />}
+          // icon={<PlusOutlined />}
           size="small"
           style={{ width: '100%', textAlign: 'left' }}
         >
@@ -101,28 +92,6 @@ export const SectionItem = (props) => {
       </div>
     </div>
   );
-};
-
-const getPriorityIconByID = (id) => {
-  let icon;
-  switch (id) {
-    case 1:
-      icon = <PriorityBacklogOutlined />;
-      break;
-    case 2:
-      icon = <PriorityNormalOutlined />;
-      break;
-    case 3:
-      icon = <PriorityHighOutlined />;
-      break;
-    case 4:
-      icon = <PriorityUrgentOutlined />;
-      break;
-    default:
-      icon = <PriorityBacklogOutlined />;
-      break;
-  }
-  return icon;
 };
 
 // Task
@@ -154,9 +123,8 @@ export const FieldItem = (props) => {
     boxShadow: dragOverlay
       ? '0 0 0 calc(1px / 1) rgba(63, 63, 68, 0.05), -1px 0 15px 0 rgba(34, 33, 81, 0.01), 0px 15px 15px 0 rgba(34, 33, 81, 0.25)'
       : '',
-    border: dragOverlay ? '1px solid rgba(64, 150, 255, 1)' : '1px solid #dcdcdc', // 1px solid rgba(64, 150, 255, 1)
+    border: dragOverlay ? '1px solid rgba(64, 150, 255, 1)' : '1px solid #dcdcdc',
     cursor: dragOverlay ? 'grabbing' : 'grab',
-    //transform: dragOverlay ? 'rotate(0deg) scale(1.02)' : 'rotate(0deg) scale(1.0)'
     touchAction:
       window.PointerEvent ||
       'ontouchstart' in window ||
@@ -176,44 +144,6 @@ export const FieldItem = (props) => {
       <div>
         <Row justify="space-between">
           <Col span={20}>{item.name}</Col>
-        </Row>
-        <Row
-          justify="space-between"
-          style={{
-            marginTop: '10px',
-            color: '#777',
-          }}
-        >
-          <Col>
-            <Space align="center" size="middle">
-              {item.following && <EyeOutlined />}
-              {item.comments_count && (
-                <Space>
-                  <MessageOutlined />
-                  {item.comments_count}
-                </Space>
-              )}
-            </Space>
-          </Col>
-          <Col>
-            <Space align="center">
-              {getPriorityIconByID(item.priority_id)}
-              {item.assignees_ids.length > 0 && (
-                <Avatar.Group
-                  maxCount={2}
-                  size="small"
-                  maxStyle={{
-                    color: '#fff',
-                    backgroundColor: '#ccc',
-                  }}
-                >
-                  {item.assignees_ids.map((id) => {
-                    return <Avatar icon={<UserOutlined />} key={id} />;
-                  })}
-                </Avatar.Group>
-              )}
-            </Space>
-          </Col>
         </Row>
       </div>
     </div>
