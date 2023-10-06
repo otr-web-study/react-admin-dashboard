@@ -15,4 +15,4 @@ export { default as ChartsHeader } from './ChartsHeader';
 export { default as Header } from './Header';
 export { default as CalendarEventCard } from './CalendarEventCard';
 export { default as NewCalendarEventForm } from './NewCalendarEventForm';
-export { default as KanbanTasks } from './Kanban/KanbanTasks';
+export { default as KanbanBoard } from './Kanban/KanbanBoard';
