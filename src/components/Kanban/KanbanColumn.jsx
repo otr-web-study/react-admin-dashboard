@@ -1,4 +1,5 @@
-import { useSortable } from '@dnd-kit/sortable';
+import { useMemo } from 'react';
+import { SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import KanbanTask from './KanbanTask';
 
@@ -22,6 +23,8 @@ const KanbanColumn = ({ column, tasks }) => {
 
   const content = tasks ? tasks.map((t) => <KanbanTask key={t.Id} task={t} />) : null;
 
+  const tasksIds = useMemo(() => (tasks ? tasks.map((t) => t.Id) : []), [tasks]);
+
   return (
     <div
       ref={setNodeRef}
@@ -32,7 +35,9 @@ const KanbanColumn = ({ column, tasks }) => {
         {column.headerText}
         <span className="font-normal ml-1">{`(${tasks && tasks.length})`}</span>
       </h3>
-      <div className="my-4 flex flex-col gap-3 mx-3">{content}</div>
+      <div className="my-4 flex flex-col gap-3 mx-3">
+        <SortableContext items={tasksIds}>{content}</SortableContext>
+      </div>
     </div>
   );
 };
