@@ -6,7 +6,7 @@ import KanbanColumn from './KanbanColumn';
 import KanbanTask from './KanbanTask';
 
 const KanbanBoard = ({ columns: initialColumns, items, keyField }) => {
-  const [tasks, setTasks] = useState({});
+  const [tasks, setTasks] = useState(items);
   const [columnIds, setColumnIds] = useState([]);
   const [activeColumn, setActiveColumn] = useState(null);
   const [activeTask, setActiveTask] = useState(null);
@@ -37,16 +37,27 @@ const KanbanBoard = ({ columns: initialColumns, items, keyField }) => {
 
     const activeId = active.id;
     const overId = over.id;
+    const isActiveColumn = active.data.current?.type === 'column';
 
     if (activeId === overId) return;
 
-    setColumns((columns) =>
-      arrayMove(
-        columns,
-        columns.findIndex((c) => c.keyField === activeId),
-        columns.findIndex((c) => c.keyField === overId),
-      ),
-    );
+    if (isActiveColumn) {
+      setColumns((columns) =>
+        arrayMove(
+          columns,
+          columns.findIndex((c) => c.keyField === activeId),
+          columns.findIndex((c) => c.keyField === overId),
+        ),
+      );
+    } else {
+      setTasks((tasks) =>
+        arrayMove(
+          tasks,
+          tasks.findIndex((t) => t.Id === activeId),
+          tasks.findIndex((t) => t.Id === overId),
+        ),
+      );
+    }
   };
 
   const onDragOver = (evt) => {
@@ -61,18 +72,35 @@ const KanbanBoard = ({ columns: initialColumns, items, keyField }) => {
 
     const isActiveTask = active.data.current?.type === 'task';
     const isOverTask = over.data.current?.type === 'task';
+
+    if (!isActiveTask) return;
+
+    setTasks((tasks) => {
+      const activeIndex = tasks.findIndex((t) => t.Id === activeId);
+
+      if (isOverTask) {
+        const overIndex = tasks.findIndex((t) => t.Id === overId);
+
+        tasks[activeIndex][keyField] = tasks[overIndex][keyField];
+
+        return arrayMove(tasks, activeIndex, overIndex);
+      }
+
+      tasks[activeIndex][keyField] = overId;
+
+      const lastIndex = tasks.findIndex(
+        (t) => t.Id === tasks.findLast((t) => t[keyField] === overId)?.Id ?? activeId,
+      );
+
+      return arrayMove(tasks, activeIndex, lastIndex);
+    });
   };
 
-  useLayoutEffect(() => {
-    setTasks(
-      initialColumns.reduce((acc, col) => {
-        const colTasks = items.filter((i) => i[keyField] === col.keyField);
-        acc[col.keyField] = colTasks || [];
-
-        return acc;
-      }, {}),
+  const toggleColumnExpand = (keyField) => {
+    setColumns(
+      columns.map((c) => (c.keyField === keyField ? { ...c, isExpanded: !c.isExpanded } : c)),
     );
-  }, [initialColumns, items, keyField]);
+  };
 
   useLayoutEffect(() => {
     setColumnIds(columns.map((c) => c.keyField));
@@ -80,7 +108,12 @@ const KanbanBoard = ({ columns: initialColumns, items, keyField }) => {
 
   const content = columns
     ? columns.map((col) => (
-        <KanbanColumn key={col.keyField} column={col} tasks={tasks[col.keyField]} />
+        <KanbanColumn
+          key={col.keyField}
+          column={col}
+          tasks={tasks.filter((t) => t[keyField] === col.keyField)}
+          onExpand={() => toggleColumnExpand(col.keyField)}
+        />
       ))
     : null;
 
@@ -96,7 +129,10 @@ const KanbanBoard = ({ columns: initialColumns, items, keyField }) => {
         {createPortal(
           <DragOverlay>
             {activeColumn && (
-              <KanbanColumn column={activeColumn} tasks={tasks[activeColumn.keyField]} />
+              <KanbanColumn
+                column={activeColumn}
+                tasks={tasks.filter((t) => t[keyField] === activeColumn.keyField)}
+              />
             )}
             {activeTask && <KanbanTask task={activeTask} />}
           </DragOverlay>,
