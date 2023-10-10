@@ -51,6 +51,9 @@ export default {
       flex: {
         2: '2 2 0%',
       },
+      transitionProperty: {
+        width: 'width',
+      },
     },
   },
   plugins: [

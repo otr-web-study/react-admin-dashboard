@@ -31,7 +31,7 @@ const KanbanColumn = ({ column, tasks, onExpand }) => {
       data-expanded={column.isExpanded ?? true}
       ref={setNodeRef}
       style={style}
-      className="flex-1 overflow-x-hidden min-w-[150px] bg-light-gray rounded min-h-[500px] pb-3 flex flex-col max-w-[350px] shadow-md data-[expanded='false']:flex-none data-[expanded='false']:w-12 data-[expanded='false']:min-w-[50px]"
+      className="flex-1 overflow-x-hidden min-w-[150px] bg-light-gray rounded min-h-[500px] pb-3 flex flex-col max-w-[350px] shadow-md transition-width duration-300 data-[expanded='false']:flex-none data-[expanded='false']:w-12 data-[expanded='false']:min-w-[50px]"
     >
       <div
         data-expanded={column.isExpanded ?? true}
@@ -41,14 +41,17 @@ const KanbanColumn = ({ column, tasks, onExpand }) => {
       >
         <h3
           data-expanded={column.isExpanded ?? true}
-          className="data-[expanded='false']:-rotate-[90deg] data-[expanded='false']:h-full"
+          className="data-[expanded='false']:[writing-mode:vertical-lr]"
         >
           {column.headerText}
-          <span className="font-normal ml-1">{`(${tasks && tasks.length})`}</span>
+          <span
+            data-expanded={column.isExpanded ?? true}
+            className="font-normal data-[expanded='true']:ml-1 data-[expanded='false']:mt-1"
+          >{`(${tasks && tasks.length})`}</span>
         </h3>
-        <button onClick={onExpand}>
-          {(column.isExpanded ?? true) && <MdOutlineKeyboardArrowLeft className="w-5 h-5" />}
-          {!(column.isExpanded ?? true) && <MdOutlineKeyboardArrowRight className="w-5 h-5" />}
+        <button onClick={onExpand} className="hover:text-accent transition-colors duration-300">
+          {(column.isExpanded ?? true) && <MdOutlineKeyboardArrowLeft className="w-6 h-6" />}
+          {!(column.isExpanded ?? true) && <MdOutlineKeyboardArrowRight className="w-6 h-6" />}
         </button>
       </div>
       <div
