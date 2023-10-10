@@ -82,8 +82,8 @@ const gridEmployeeCountry = (_, record) => (
     <span>{record.Country}</span>
   </div>
 );
-export const EditorData = () => (
-  <div>
+export const EditorData = () =>
+  `<div>
     <h3>
       Try React React has been designed from the start for gradual adoption, and you can use as
       little or as much React as you need. Whether you want to get a taste of React, add some
@@ -117,8 +117,7 @@ export const EditorData = () => (
       going through this JavaScript overview to check your knowledge level. It will take you between
       30 minutes and an hour but you will feel more confident learning React.
     </h3>
-  </div>
-);
+  </div>`;
 const customerGridImage = (_, record) => (
   <div className="image flex gap-4">
     <img className="rounded-full w-10 h-10" src={record.CustomerImage} alt="employee" />
