@@ -54,6 +54,9 @@ export default {
       transitionProperty: {
         width: 'width',
       },
+      zIndex: {
+        max: 10000,
+      },
     },
   },
   plugins: [
