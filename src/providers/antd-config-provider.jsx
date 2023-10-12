@@ -7,7 +7,12 @@ const AntdConfigProvider = ({ children }) => {
 
   return (
     <ConfigProvider
-      theme={{ token: { colorPrimary: currentColor.toLowerCase(), colorLink: '#03c9d7' } }}
+      theme={{
+        token: {
+          colorPrimary: currentColor.color.toLowerCase(),
+          colorLink: currentColor.color.toLowerCase(),
+        },
+      }}
     >
       <StyleProvider hashPriority="high">{children}</StyleProvider>
     </ConfigProvider>

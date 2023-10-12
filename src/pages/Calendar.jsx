@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Badge, Calendar as AntCalendar, Popover, Modal } from 'antd';
 import dayjs from 'dayjs';
 import { CiEdit } from 'react-icons/ci';
-import { CalendarEventCard, NewCalendarEventForm, Header } from '../components';
+import { CalendarEventCard, NewCalendarEventForm, Header, PageContainer } from '../components';
 import { scheduleData } from '../data/dummy';
 import { useForm } from 'antd/es/form/Form';
 
@@ -89,7 +89,7 @@ const Calendar = () => {
   const handleSelect = (value) => setSelectedDate(value);
 
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <PageContainer>
       <Header category="App" title="Calendar" />
       <AntCalendar
         cellRender={cellRender}
@@ -107,7 +107,7 @@ const Calendar = () => {
       >
         <NewCalendarEventForm form={form} type={calendarMode} day={selectedDate} />
       </Modal>
-    </div>
+    </PageContainer>
   );
 };
 

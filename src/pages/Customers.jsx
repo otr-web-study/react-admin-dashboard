@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Table } from 'antd';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { customersData, customersGrid } from '../data/dummy';
-import { Header } from '../components';
+import { Header, PageContainer } from '../components';
 import { useColumnEditableProps } from '../hooks/useColumnEditableProps';
 
 const numericalColumns = ['Weeks'];
@@ -33,7 +33,7 @@ const Customers = () => {
   };
 
   return (
-    <div className="flex flex-col m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
+    <PageContainer>
       <Header category="Page" title="Customers" />
       <button
         className="flex items-center gap-2 p-2 text-gray-600 self-start transition-colors duration-300 hover:text-accent disabled:text-gray-400"
@@ -58,7 +58,7 @@ const Customers = () => {
           scroll={{ x: 900 }}
         />
       </Form>
-    </div>
+    </PageContainer>
   );
 };
 

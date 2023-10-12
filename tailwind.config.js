@@ -25,10 +25,8 @@ export default {
         color: 'rgba(0, 0, 0, 0.1)',
       },
       colors: {
-        accent: '#03c9d7',
-        'accent-light': '#e6fffc',
-        'accent-dark': '#267d83',
-        'accent-secondary': '#FB9678',
+        accent: 'var(--accent)',
+        'accent-secondary': 'var(--accentSecondary)',
       },
       width: {
         400: '400px',

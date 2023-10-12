@@ -15,7 +15,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       type="button"
       onClick={customFunc}
       style={{ color }}
-      className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+      className="relative text-xl rounded-full p-3 hover:bg-light-gray dark:hover:dark:bg-secondary-dark-bg transition-colors duration-300"
     >
       <span
         style={{ background: dotColor }}
@@ -35,7 +35,7 @@ const Navbar = () => {
     handleClick,
     screenSize,
     setScreenSize,
-    currentColor,
+    currentColor: { color, secondColor },
   } = useStateContext();
 
   useEffect(() => {
@@ -61,33 +61,33 @@ const Navbar = () => {
       <NavButton
         title="Menu"
         customFunc={() => setActiveMenu((prev) => !prev)}
-        color={currentColor}
+        color={color}
         icon={<AiOutlineMenu />}
       />
       <div className="flex">
         <NavButton
           title="Cart"
           customFunc={() => handleClick('cart')}
-          color={currentColor}
+          color={color}
           icon={<FiShoppingCart />}
         />
         <NavButton
           title="Chat"
-          dotColor={currentColor}
+          dotColor={color}
           customFunc={() => handleClick('chat')}
-          color={currentColor}
+          color={color}
           icon={<BsChatLeft />}
         />
         <NavButton
           title="Notifications"
-          dotColor={currentColor}
+          dotColor={secondColor}
           customFunc={() => handleClick('notification')}
-          color={currentColor}
+          color={color}
           icon={<RiNotification3Line />}
         />
         <Tooltip title="Profile" placement="bottom" color="#555555">
           <div
-            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray dark:hover:bg-secondary-dark-bg rounded-lg transition-colors duration-300"
             onClick={() => handleClick('userProfile')}
           >
             <img src={avatar} alt="avatar" className="rounded-full h-8 w-8" />

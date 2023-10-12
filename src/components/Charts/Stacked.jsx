@@ -1,7 +1,9 @@
 import { Column } from '@ant-design/plots';
-import { stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy';
+import { stackedCustomSeries } from '../../data/dummy';
+import { useStateContext } from '../../contexts/ContextProvider';
 
 const Stacked = ({ width, height }) => {
+  const { currentColor } = useStateContext();
   const data = stackedCustomSeries.reduce((acc, ser) => {
     acc.push(...ser.dataSource.map((item) => ({ ...item, type: ser.name })));
     return acc;
@@ -37,7 +39,7 @@ const Stacked = ({ width, height }) => {
         };
       },
     },
-    color: ({ type }) => (type === 'Expense' ? '#03c9d7' : '#FB9678'),
+    color: ({ type }) => (type === 'Expense' ? currentColor.color : currentColor.secondColor),
     columnStyle: ({ type }) => ({ radius: type === 'Budget' ? [8, 8, 0, 0] : [0, 0, 0, 0] }),
   };
 

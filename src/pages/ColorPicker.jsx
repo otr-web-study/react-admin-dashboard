@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Circle from '@uiw/react-color-circle';
 import Chrome from '@uiw/react-color-chrome';
-import { GithubPlacement } from '@uiw/react-color-github';
-import { Header } from '../components';
+import { Header, PageContainer } from '../components';
 
 const circleColors = [
   '#F44336',
@@ -29,10 +28,10 @@ const ColorPicker = () => {
   const [color, setColor] = useState('#F44336');
 
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <PageContainer>
       <Header category="App" title="Color Picker" />
       <div className="text-center">
-        <div id="preview" style={{ backgroundColor: color }} />
+        <div id="preview" className="w-full" style={{ backgroundColor: color }} />
         <div className="flex justify-center items-start gap-20 flex-wrap">
           <div className="max-w-[240px]">
             <p className="text-2xl font-semibold mt-2 mb-4">Circle palette</p>
@@ -44,7 +43,7 @@ const ColorPicker = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

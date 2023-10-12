@@ -54,13 +54,19 @@ const ECommerce = () => {
           <div className="flex justify-between">
             <p className="font-semibold text-xl">Revenue updates</p>
             <div className="flex items-center gap-4">
-              <p className="flex items-center gap-2 text-accent hover:drop-shadow-xl">
+              <p
+                className="flex items-center gap-2 hover:drop-shadow-xl"
+                style={{ color: currentColor.color }}
+              >
                 <span>
                   <GoDotFill />
                 </span>
                 <span>Expense</span>
               </p>
-              <p className="flex items-center gap-2 text-accent-secondary hover:drop-shadow-xl">
+              <p
+                className="flex items-center gap-2 hover:drop-shadow-xl"
+                style={{ color: currentColor.secondColor }}
+              >
                 <span>
                   <GoDotFill />
                 </span>
@@ -86,12 +92,17 @@ const ECommerce = () => {
                 <p className="text-gray-500 mt-1">Expense</p>
               </div>
               <div className="mt-5">
-                <SparkLine height={80} width={250} data={SparklineAreaData} color="#03c9d7" />
+                <SparkLine
+                  height={80}
+                  width={250}
+                  data={SparklineAreaData}
+                  color={currentColor.color}
+                />
               </div>
               <div className="mt-10">
                 <Button
                   color="white"
-                  bgColor={currentColor}
+                  bgColor={currentColor.color}
                   text="Download Report"
                   borderRadius="10px"
                 />

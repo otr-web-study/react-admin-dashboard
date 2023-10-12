@@ -16,3 +16,4 @@ export { default as Header } from './Header';
 export { default as CalendarEventCard } from './CalendarEventCard';
 export { default as NewCalendarEventForm } from './NewCalendarEventForm';
 export { default as KanbanBoard } from './Kanban/KanbanBoard';
+export { default as PageContainer } from './PageContainer';

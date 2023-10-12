@@ -1,10 +1,10 @@
 import { Table } from 'antd';
 import { ordersData, ordersGrid } from '../data/dummy';
-import { Header } from '../components';
+import { Header, PageContainer } from '../components';
 
 const Orders = () => {
   return (
-    <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
+    <PageContainer>
       <Header category="Page" title="Orders" />
       <Table
         columns={ordersGrid}
@@ -13,7 +13,7 @@ const Orders = () => {
         pagination={{ position: ['', 'bottomLeft'] }}
         scroll={{ x: 900 }}
       />
-    </div>
+    </PageContainer>
   );
 };
 
