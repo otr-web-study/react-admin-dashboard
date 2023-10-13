@@ -31,7 +31,7 @@ const KanbanColumn = ({ column, tasks, onExpand }) => {
       data-expanded={column.isExpanded ?? true}
       ref={setNodeRef}
       style={style}
-      className="flex-1 overflow-x-hidden min-w-[150px] bg-light-gray rounded min-h-[500px] pb-3 flex flex-col max-w-[350px] shadow-md transition-width duration-300 data-[expanded='false']:flex-none data-[expanded='false']:w-12 data-[expanded='false']:min-w-[50px]"
+      className="flex-1 overflow-x-hidden min-w-[150px] bg-light-gray dark:bg-main-dark-bg dark:text-gray-200 rounded min-h-[500px] pb-3 flex flex-col max-w-[350px] shadow-md transition-width duration-300 data-[expanded='false']:flex-none data-[expanded='false']:w-12 data-[expanded='false']:min-w-[50px]"
     >
       <div
         data-expanded={column.isExpanded ?? true}

@@ -17,6 +17,12 @@ export const useKanbanBoard = (initialColumns, items, keyField) => {
 
   const onDragStart = (evt) => {
     if (evt.active.data.current?.type === 'column') {
+      setColumns(
+        columns.map((col) => {
+          col.isExpanded = true;
+          return col;
+        }),
+      );
       setActiveColumn(evt.active.data.current.column);
       return;
     }
@@ -58,6 +64,7 @@ export const useKanbanBoard = (initialColumns, items, keyField) => {
   };
 
   const onDragOver = (evt) => {
+    debugger;
     const { active, over } = evt;
 
     if (!over) return;

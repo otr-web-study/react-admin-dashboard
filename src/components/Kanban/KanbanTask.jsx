@@ -24,7 +24,7 @@ const KanbanTask = ({ task }) => {
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className="bg-white p-2 rounded border-l-4"
+      className="bg-white dark:bg-secondary-dark-bg dark:text-gray-200 p-2 rounded border-l-4"
       style={{ ...style, borderLeftColor: task.Color }}
     >
       <h4 className="font-semibold">{task.Title}</h4>

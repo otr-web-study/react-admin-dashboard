@@ -30,7 +30,6 @@
 /* color-picker style  */
 
 #preview {
-  background: transparent url('/assets/images/pen.png') no-repeat;
   display: inline-block;
   height: 80px;
   margin: 10px 0;

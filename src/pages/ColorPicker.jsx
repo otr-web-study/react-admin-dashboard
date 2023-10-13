@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Circle from '@uiw/react-color-circle';
 import Chrome from '@uiw/react-color-chrome';
 import { Header, PageContainer } from '../components';
+import { useStateContext } from '../contexts/ContextProvider';
 
 const circleColors = [
   '#F44336',
@@ -26,12 +27,20 @@ const circleColors = [
 
 const ColorPicker = () => {
   const [color, setColor] = useState('#F44336');
+  const { currentMode } = useStateContext();
 
   return (
     <PageContainer>
       <Header category="App" title="Color Picker" />
       <div className="text-center">
-        <div id="preview" className="w-full" style={{ backgroundColor: color }} />
+        <div
+          id="preview"
+          className="w-full"
+          style={{
+            backgroundColor: color,
+            background: `transparent url('/assets/images/${currentMode}-pen.png') no-repeat`,
+          }}
+        />
         <div className="flex justify-center items-start gap-20 flex-wrap">
           <div className="max-w-[240px]">
             <p className="text-2xl font-semibold mt-2 mb-4">Circle palette</p>
