@@ -23,7 +23,7 @@ const CalendarEventCard = ({ event, onDelete }) => {
       </p>
       <Typography.Link
         onClick={() => onDelete(event.Id)}
-        rootClassName="!text-gray-600 hover:!text-accent !self-center !flex !items-center !gap-1"
+        rootClassName="!text-gray-600 hover:!text-accent dark:!text-gray-300 dark:hover:!text-accent !self-center !flex !items-center !gap-1"
       >
         <RiDeleteBinLine />
         Delete

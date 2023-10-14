@@ -36,7 +36,7 @@ const Customers = () => {
     <PageContainer>
       <Header category="Page" title="Customers" />
       <button
-        className="flex items-center gap-2 p-2 text-gray-600 self-start transition-colors duration-300 hover:text-accent disabled:text-gray-400"
+        className="flex items-center gap-2 p-2 text-gray-600 dark:text-gray-300 self-start transition-colors duration-300 hover:text-accent dark:hover:text-accent disabled:text-gray-400 dark:disabled:text-gray-400"
         disabled={!hasSelected}
         onClick={handleDelete}
       >

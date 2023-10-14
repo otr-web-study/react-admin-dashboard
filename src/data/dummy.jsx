@@ -65,7 +65,7 @@ export const kanbanGrid = [
 
   { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true },
 
-  { headerText: 'Testing', keyField: 'Testing', allowToggle: true, isExpanded: false },
+  { headerText: 'Testing', keyField: 'Testing', allowToggle: true, isExpanded: true },
 
   { headerText: 'Done', keyField: 'Close', allowToggle: true },
 ];
@@ -77,8 +77,8 @@ const gridEmployeeProfile = (_, record) => (
 );
 
 const gridEmployeeCountry = (_, record) => (
-  <div className="flex items-center justify-center gap-2">
-    <GrLocation />
+  <div className="flex items-center justify-center gap-2 dark:[&_*]:stroke-gray-200">
+    <GrLocation className="" />
     <span>{record.Country}</span>
   </div>
 );
@@ -129,7 +129,7 @@ const customerGridImage = (_, record) => (
 );
 
 const customerGridStatus = (_, record) => (
-  <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
+  <div className="flex gap-2 justify-center items-center text-gray-700 dark:text-gray-200 capitalize">
     <p style={{ background: record.StatusBg }} className="rounded-full h-3 w-3" />
     <p>{record.Status}</p>
   </div>
@@ -388,6 +388,7 @@ export const customersGrid = [
     title: 'Status',
     align: 'center',
     render: customerGridStatus,
+    width: 120,
   },
   {
     dataIndex: 'Weeks',

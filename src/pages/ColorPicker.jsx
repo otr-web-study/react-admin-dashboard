@@ -48,7 +48,11 @@ const ColorPicker = () => {
           </div>
           <div>
             <p className="text-2xl font-semibold mt-2 mb-4">Chrome palette</p>
-            <Chrome color={color} onChange={(color) => setColor(color.hex)} />
+            <Chrome
+              color={color}
+              className="dark:!bg-secondary-dark-bg"
+              onChange={(color) => setColor(color.hex)}
+            />
           </div>
         </div>
       </div>

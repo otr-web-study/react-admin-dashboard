@@ -64,7 +64,6 @@ export const useKanbanBoard = (initialColumns, items, keyField) => {
   };
 
   const onDragOver = (evt) => {
-    debugger;
     const { active, over } = evt;
 
     if (!over) return;

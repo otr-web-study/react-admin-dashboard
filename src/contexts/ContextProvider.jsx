@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { themeColors } from '../data/dummy';
-import { applyStyle } from '../utils/rootStyle';
+import { applyStyle, applyClass } from '../utils/rootStyle';
 
 const StateContext = createContext();
 
@@ -43,6 +43,10 @@ export const ContextProvider = ({ children }) => {
     applyStyle('--accent', currentColor.color);
     applyStyle('--accentSecondary', currentColor.secondColor);
   }, [currentColor]);
+
+  useEffect(() => {
+    applyClass(currentMode.toLowerCase(), currentMode === 'Light' ? 'dark' : 'light');
+  }, [currentMode]);
 
   return (
     <StateContext.Provider

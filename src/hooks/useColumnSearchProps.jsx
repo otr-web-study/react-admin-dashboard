@@ -4,7 +4,9 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 export const useColumnSearchProps = () => {
   const searchInput = useRef(null);
-  const { currentColor: { color }} = useStateContext();
+  const {
+    currentColor: { color },
+  } = useStateContext();
 
   const handleReset = (clearFilters, confirm, close) => {
     clearFilters();
@@ -21,7 +23,7 @@ export const useColumnSearchProps = () => {
           value={selectedKeys[0] || ''}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onKeyDown={(e) => e.code === 'Enter' && confirm()}
-          className="outline-none"
+          className="outline-none dark:bg-secondary-dark-bg"
         />
 
         <button

@@ -58,7 +58,7 @@ const Calendar = () => {
       <Popover
         content={() => (
           <button
-            className="flex items-center gap-1 text-gray-600 hover:text-accent transition-colors duration-300"
+            className="flex items-center gap-1 text-gray-600 hover:text-accent dark:text-gray-300 dark:hover:text-accent transition-colors duration-300"
             onClick={() => setNewEventOpen(true)}
           >
             <CiEdit />

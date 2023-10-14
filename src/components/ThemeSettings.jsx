@@ -9,18 +9,17 @@ const ThemeSettings = ({ open, onClose }) => {
 
   return (
     <Drawer open={open} onClose={onClose} closable={false} title={null} width={400}>
-      <div className="flex justify-between items-center py-4 ml-4">
+      <div className="flex justify-between items-center py-4 ml-4 dark:text-gray-200">
         <p className="font-semibold text-xl">Settings</p>
         <button
           type="button"
           onClick={onClose}
-          style={{ color: 'rgb(153, 171, 180)', borderRadius: '50%' }}
-          className="text-2xl p-3 hover:drop-shadow-xl hover:bg-light-gray transition-all duration-300"
+          className="text-2xl p-3 rounded-full text-gray-400 dark:text-gray-300 hover:drop-shadow-xl hover:bg-light-gray dark:hover:bg-main-dark-bg transition-all duration-300"
         >
           <MdOutlineCancel />
         </button>
       </div>
-      <div className="flex-col flex border-t-1 border-color py-4 ml-4">
+      <div className="flex-col flex border-t-1 border-color py-4 ml-4 dark:text-gray-200 dark:border-dark-color">
         <p className="font-semibold text-lg">Theme options</p>
         <div className="mt-4">
           <input
@@ -51,7 +50,7 @@ const ThemeSettings = ({ open, onClose }) => {
           </label>
         </div>
       </div>
-      <div className="flex-col flex border-t-1 border-color py-4 ml-4">
+      <div className="flex-col flex border-t-1 border-color py-4 ml-4 dark:text-gray-200 dark:border-dark-color">
         <p className="font-semibold text-lg">Theme Colors</p>
         <div className="flex gap-5 mt-2 items-center">
           {themeColors.map((item, idx) => (

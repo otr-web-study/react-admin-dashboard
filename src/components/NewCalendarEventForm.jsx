@@ -1,10 +1,13 @@
 import { Form, Input, TimePicker, DatePicker, ColorPicker } from 'antd';
 import dayjs from 'dayjs';
+import { useStateContext } from '../contexts/ContextProvider';
 
 const rules = [{ required: true }];
 const timeFormat = 'HH:mm';
 
 const NewCalendarEventForm = ({ form, type, day }) => {
+  const { currentColor } = useStateContext();
+
   return (
     <Form form={form} labelCol={{ span: 4 }}>
       <Form.Item name="Subject" label="Title" rules={rules}>
@@ -40,7 +43,7 @@ const NewCalendarEventForm = ({ form, type, day }) => {
       >
         <TimePicker format={timeFormat} allowClear={false} />
       </Form.Item>
-      <Form.Item name="CategoryColor" label="Color" rules={rules} initialValue="#03c9d7">
+      <Form.Item name="CategoryColor" label="Color" rules={rules} initialValue={currentColor.color}>
         <ColorPicker />
       </Form.Item>
     </Form>

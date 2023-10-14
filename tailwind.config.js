@@ -23,6 +23,7 @@ export default {
       },
       borderColor: {
         color: 'rgba(0, 0, 0, 0.1)',
+        'dark-color': 'rgba(255, 255, 255, 0.1)',
       },
       colors: {
         accent: 'var(--accent)',
