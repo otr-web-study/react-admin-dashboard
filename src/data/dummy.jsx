@@ -239,6 +239,22 @@ export const areaCustomSeries = [
   },
 ];
 
+export const preparedAreaChartData = areaCustomSeries.reduce((acc, item) => {
+  acc.push(
+    ...item.dataSource.reduce((ac, i) => {
+      ac.push({
+        year: i.x.getFullYear(),
+        percentage: i.y,
+        name: item.name,
+      });
+
+      return ac;
+    }, []),
+  );
+
+  return acc;
+}, []);
+
 export const barChartData = [
   [
     { x: 'USA', y: 46 },
@@ -301,6 +317,23 @@ export const barCustomSeries = [
     },
   },
 ];
+
+export const preparedBarChartData = barCustomSeries.reduce((acc, item) => {
+  acc.push(
+    ...item.dataSource.reduce((ac, i) => {
+      ac.push({
+        x: i.x,
+        y: i.y,
+        name: item.name,
+      });
+
+      return ac;
+    }, []),
+  );
+
+  return acc;
+}, []);
+
 export const colorMappingData = [
   [
     { x: 'Jan', y: 6.96 },
@@ -2922,6 +2955,22 @@ export const lineCustomSeries = [
     type: 'Line',
   },
 ];
+
+export const preparedLineChartData = lineCustomSeries.reduce((acc, item) => {
+  acc.push(
+    ...item.dataSource.reduce((ac, i) => {
+      ac.push({
+        year: i.x.getFullYear(),
+        gdp: i.y,
+        name: item.name,
+      });
+
+      return ac;
+    }, []),
+  );
+
+  return acc;
+}, []);
 
 export const pieChartData = [
   { x: 'Labour', y: 18, text: '18%' },
@@ -5674,3 +5723,23 @@ export const PyramidData = [
   { x: 'Fruits', y: 520, text: '520 cal' },
   { x: 'Bread, Rice, Pasta', y: 930, text: '930 cal' },
 ];
+
+export const getChartsTheme = (mode) =>
+  mode === 'Light'
+    ? 'default'
+    : {
+        components: {
+          tooltip: {
+            domStyles: {
+              'g2-tooltip': {
+                backgroundColor: '#33373E',
+                color: '#E5E7EB',
+                boxShadow: '0px 2px 4px rgba(0,0,0,.5)',
+              },
+            },
+          },
+          legend: {
+            common: { itemName: { style: { fill: '#E5E7EB' } } },
+          },
+        },
+      };

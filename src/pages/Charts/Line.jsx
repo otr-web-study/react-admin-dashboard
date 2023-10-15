@@ -1,12 +1,10 @@
-import { Header, LineChart, PageContainer } from '../../components';
+import { ChartsHeader, LineChart, PageContainer } from '../../components';
 
 const Line = () => {
   return (
     <PageContainer>
-      <Header category="Chart" title="Inflation Rate" />
-      <div className="w-full">
-        <LineChart />
-      </div>
+      <ChartsHeader category="Line" title="Inflation Rate" />
+      <LineChart />
     </PageContainer>
   );
 };

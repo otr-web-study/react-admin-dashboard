@@ -1,6 +1,6 @@
 import { Line } from '@ant-design/plots';
 
-const SparkLine = ({ height, width, data, color }) => {
+const SparkLine = ({ height, width, data, color, theme }) => {
   const config = {
     data,
     xField: 'x',
@@ -17,6 +17,7 @@ const SparkLine = ({ height, width, data, color }) => {
     tooltip: {
       formatter: (datum) => ({ name: 'Data', value: datum.yval }),
     },
+    theme,
   };
   return <Line {...config}></Line>;
 };

@@ -1,5 +1,12 @@
+import { ChartsHeader, Pie as PieChart, PageContainer } from '../../components';
+
 const Pie = () => {
-  return <div></div>;
+  return (
+    <PageContainer>
+      <ChartsHeader category="Bar" title="Project Cost Breakdown" />
+      <PieChart />
+    </PageContainer>
+  );
 };
 
 export default Pie;

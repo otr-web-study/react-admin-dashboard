@@ -1,28 +1,13 @@
 import { Line } from '@ant-design/plots';
-import { lineCustomSeries, LinePrimaryYAxis, LinePrimaryXAxis } from '../../data/dummy';
-
-const data = lineCustomSeries.reduce((acc, item) => {
-  acc.push(
-    ...item.dataSource.reduce((ac, i) => {
-      ac.push({
-        Date: i.x,
-        Infl: i.y,
-        name: item.name,
-      });
-
-      return ac;
-    }, []),
-  );
-
-  return acc;
-}, []);
+import { preparedLineChartData, getChartsTheme } from '../../data/dummy';
+import { useStateContext } from '../../contexts/ContextProvider';
 
 const LineChart = () => {
-  console.log(data);
+  const { currentMode } = useStateContext();
   const config = {
-    data,
-    xField: 'Date',
-    yField: 'Infl',
+    data: preparedLineChartData,
+    xField: 'year',
+    yField: 'gdp',
     seriesField: 'name',
     legend: {
       position: 'top',
@@ -31,12 +16,14 @@ const LineChart = () => {
     animation: {
       appear: {
         animation: 'path-in',
-        duration: 5000,
+        duration: 3000,
       },
     },
+    color: ['#03C9D7', '#7352FF', '#FB9678'],
+    theme: getChartsTheme(currentMode),
   };
 
-  return <Line config={config} />;
+  return <Line {...config} />;
 };
 
 export default LineChart;

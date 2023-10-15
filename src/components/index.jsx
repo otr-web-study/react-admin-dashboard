@@ -17,3 +17,5 @@ export { default as CalendarEventCard } from './CalendarEventCard';
 export { default as NewCalendarEventForm } from './NewCalendarEventForm';
 export { default as KanbanBoard } from './Kanban/KanbanBoard';
 export { default as PageContainer } from './PageContainer';
+export { default as AreaChart } from './Charts/AreaChart';
+export { default as BarChart } from './Charts/BarChart';

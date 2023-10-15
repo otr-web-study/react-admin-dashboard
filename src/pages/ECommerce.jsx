@@ -1,11 +1,12 @@
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { GoDotFill } from 'react-icons/go';
 import { Stacked, Button, Pie, SparkLine } from '../components';
-import { earningData, SparklineAreaData, ecomPieChartData } from '../data/dummy';
+import { earningData, SparklineAreaData, ecomPieChartData, getChartsTheme } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const ECommerce = () => {
-  const { currentColor } = useStateContext();
+  const { currentColor, currentMode } = useStateContext();
+  const theme = getChartsTheme(currentMode);
 
   return (
     <div className="mt-12">
@@ -75,7 +76,7 @@ const ECommerce = () => {
             </div>
           </div>
           <div className="mt-10 flex gap-10 flex-wrap justify-center">
-            <div className="border-r-1 border-color m-4 pr-10">
+            <div className="border-r-1 border-color dark:border-dark-color m-4 mt-0 pr-10">
               <div>
                 <p>
                   <span className="text-3xl font-semibold">$93,438</span>
@@ -97,6 +98,7 @@ const ECommerce = () => {
                   width={250}
                   data={SparklineAreaData}
                   color={currentColor.color}
+                  theme={theme}
                 />
               </div>
               <div className="mt-10">
@@ -109,7 +111,7 @@ const ECommerce = () => {
               </div>
             </div>
             <div>
-              <Stacked width={320} height={360} />
+              <Stacked width={320} height={360} theme={theme} />
             </div>
           </div>
         </div>

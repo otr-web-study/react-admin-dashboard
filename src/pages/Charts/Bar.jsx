@@ -1,5 +1,12 @@
+import { ChartsHeader, BarChart, PageContainer } from '../../components';
+
 const Bar = () => {
-  return <div></div>;
+  return (
+    <PageContainer>
+      <ChartsHeader category="Bar" title="Olympic Medal Counts - RIO" />
+      <BarChart />
+    </PageContainer>
+  );
 };
 
 export default Bar;
