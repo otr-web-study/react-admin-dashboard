@@ -10,6 +10,7 @@ const AreaChart = () => {
     xField: 'year',
     yField: 'percentage',
     seriesField: 'name',
+    height: 500,
     theme: getChartsTheme(currentMode),
   };
 

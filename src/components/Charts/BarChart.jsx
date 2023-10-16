@@ -27,6 +27,7 @@ const BarChart = () => {
         },
       ],
     },
+    height: 500,
     theme: getChartsTheme(currentMode),
   };
 

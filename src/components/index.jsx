@@ -19,3 +19,5 @@ export { default as KanbanBoard } from './Kanban/KanbanBoard';
 export { default as PageContainer } from './PageContainer';
 export { default as AreaChart } from './Charts/AreaChart';
 export { default as BarChart } from './Charts/BarChart';
+export { default as FinancialChart } from './Charts/FinancialChart';
+export { default as ColorMappingChart } from './Charts/ColorMappingChart';

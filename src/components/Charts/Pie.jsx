@@ -21,6 +21,7 @@ const Pie = () => {
         textAlign: 'center',
       },
     },
+    height: 500,
     interactions: [
       {
         type: 'element-selected',

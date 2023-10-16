@@ -19,6 +19,7 @@ const LineChart = () => {
         duration: 3000,
       },
     },
+    height: 500,
     color: ['#03C9D7', '#7352FF', '#FB9678'],
     theme: getChartsTheme(currentMode),
   };

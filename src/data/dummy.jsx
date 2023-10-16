@@ -354,13 +354,25 @@ export const colorMappingData = [
   ['#FF4040'],
 ];
 
+export const colorMappingValueByColumns = colorMappingData[0].reduce((acc, item) => {
+  acc[item['x']] = item['y'];
+
+  return acc;
+}, {});
+
 export const rangeColorMapping = [
-  { label: '1°C to 10°C', start: '1', end: '10', colors: colorMappingData[1] },
+  { label: '1°C to 10°C', start: 1, end: 10, colors: colorMappingData[1] },
 
-  { label: '11°C to 20°C', start: '11', end: '20', colors: colorMappingData[2] },
+  { label: '11°C to 20°C', start: 11, end: 20, colors: colorMappingData[2] },
 
-  { label: '21°C to 30°C', start: '21', end: '30', colors: colorMappingData[3] },
+  { label: '21°C to 30°C', start: 21, end: 30, colors: colorMappingData[3] },
 ];
+
+export const getColorColorMapping = (col) => {
+  const val = colorMappingValueByColumns[col.x];
+
+  return rangeColorMapping.find((i) => val >= i.start && val <= i.end)?.colors[0] || null;
+};
 
 export const ColorMappingPrimaryXAxis = {
   valueType: 'Category',
@@ -5726,7 +5738,7 @@ export const PyramidData = [
 
 export const getChartsTheme = (mode) =>
   mode === 'Light'
-    ? 'default'
+    ? {}
     : {
         components: {
           tooltip: {

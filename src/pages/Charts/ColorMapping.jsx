@@ -1,5 +1,12 @@
+import { ChartsHeader, ColorMappingChart, PageContainer } from '../../components';
+
 const ColorMapping = () => {
-  return <div></div>;
+  return (
+    <PageContainer>
+      <ChartsHeader category="Color Mapping" title="USA CLIMATE - WEATHER BY MONTH" />
+      <ColorMappingChart />
+    </PageContainer>
+  );
 };
 
 export default ColorMapping;
