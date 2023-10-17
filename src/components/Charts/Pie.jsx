@@ -1,13 +1,13 @@
 import { Pie as PiePlot } from '@ant-design/plots';
-import { pieChartData, getChartsTheme } from '../../data/dummy';
+import { getChartsTheme } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const Pie = () => {
+const Pie = ({ data, short = true }) => {
   const { currentMode } = useStateContext();
 
   const config = {
     appendPadding: 10,
-    data: pieChartData,
+    data: data,
     angleField: 'y',
     colorField: 'x',
     radius: 1,
@@ -40,6 +40,15 @@ const Pie = () => {
     },
     theme: getChartsTheme(currentMode),
   };
+
+  if (short) {
+    config.legend = false;
+    config.height = 160;
+    config.innerRadius = 0.4;
+    config.label.style.fontSize = 11;
+    config.label.offset = '-50%';
+  }
+
   return <PiePlot {...config} />;
 };
 

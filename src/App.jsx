@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { Tooltip } from 'antd';
 import './App.css';
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
+import { Navbar, Sidebar, ThemeSettings } from './components';
 import {
   ECommerce,
   Orders,
   Calendar,
   Employees,
   Stacked,
-  Pyramid,
+  Rose,
   Customers,
   Kanban,
   Area,
@@ -82,7 +81,7 @@ const App = () => {
               <Route path="/pie" element={<Pie />} />
               <Route path="/financial" element={<Financial />} />
               <Route path="/color-mapping" element={<ColorMapping />} />
-              <Route path="/pyramid" element={<Pyramid />} />
+              <Route path="/rose" element={<Rose />} />
               <Route path="/stacked" element={<Stacked />} />
             </Routes>
           </div>

@@ -28,7 +28,7 @@ import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { HiOutlineRefresh } from 'react-icons/hi';
-import { TiTick } from 'react-icons/ti';
+import { TiTick, TiChartPieOutline } from 'react-icons/ti';
 import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
 import avatar from './avatar.jpg';
@@ -547,8 +547,8 @@ export const links = [
         icon: <BsBarChart />,
       },
       {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
+        name: 'rose',
+        icon: <TiChartPieOutline />,
       },
       {
         name: 'stacked',
@@ -2928,6 +2928,22 @@ export const dropdownData = [
     Time: 'May 2021',
   },
 ];
+
+export const selectData = [
+  {
+    value: '1',
+    label: 'March 2021',
+  },
+  {
+    value: '2',
+    label: 'April 2021',
+  },
+  {
+    value: '3',
+    label: 'May 2021',
+  },
+];
+
 export const SparklineAreaData = [
   { x: 0, yval: 2 },
   { x: 1, yval: 6 },
@@ -5753,5 +5769,6 @@ export const getChartsTheme = (mode) =>
           legend: {
             common: { itemName: { style: { fill: '#E5E7EB' } } },
           },
+          axis: { common: { title: { style: { fill: '#9CA3AF' } } } },
         },
       };

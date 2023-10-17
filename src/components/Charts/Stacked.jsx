@@ -1,9 +1,9 @@
 import { Column } from '@ant-design/plots';
-import { stackedCustomSeries } from '../../data/dummy';
+import { stackedCustomSeries, getChartsTheme } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const Stacked = ({ width, height, theme }) => {
-  const { currentColor } = useStateContext();
+const Stacked = ({ width, height, short = true }) => {
+  const { currentColor, currentMode } = useStateContext();
   const data = stackedCustomSeries.reduce((acc, ser) => {
     acc.push(...ser.dataSource.map((item) => ({ ...item, type: ser.name })));
     return acc;
@@ -17,12 +17,8 @@ const Stacked = ({ width, height, theme }) => {
     yField: 'y',
     seriesField: 'type',
     isStack: true,
-    legend: false,
-    xAxis: { line: { style: { lineWidth: 0 } } },
-    yAxis: {
-      grid: {
-        line: null,
-      },
+    label: {
+      position: 'middle',
     },
     interactions: [
       {
@@ -41,8 +37,19 @@ const Stacked = ({ width, height, theme }) => {
     },
     color: ({ type }) => (type === 'Expense' ? currentColor.color : currentColor.secondColor),
     columnStyle: ({ type }) => ({ radius: type === 'Budget' ? [8, 8, 0, 0] : [0, 0, 0, 0] }),
-    theme,
+    theme: getChartsTheme(currentMode),
   };
+
+  if (short) {
+    config.legend = false;
+    config.xAxis = { line: { style: { lineWidth: 0 } } };
+    config.yAxis = {
+      grid: {
+        line: null,
+      },
+    };
+    config.label = undefined;
+  }
 
   return <Column {...config} />;
 };

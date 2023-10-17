@@ -21,3 +21,5 @@ export { default as AreaChart } from './Charts/AreaChart';
 export { default as BarChart } from './Charts/BarChart';
 export { default as FinancialChart } from './Charts/FinancialChart';
 export { default as ColorMappingChart } from './Charts/ColorMappingChart';
+export { default as RoseChart } from './Charts/RoseChart';
+export { default as ColumnChart } from './Charts/ColumnChart';

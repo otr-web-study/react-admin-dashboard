@@ -2,7 +2,7 @@ import { Line } from '@ant-design/plots';
 import { preparedLineChartData, getChartsTheme } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const LineChart = () => {
+const LineChart = ({ height }) => {
   const { currentMode } = useStateContext();
   const config = {
     data: preparedLineChartData,
@@ -19,7 +19,7 @@ const LineChart = () => {
         duration: 3000,
       },
     },
-    height: 500,
+    height: height || 500,
     color: ['#03C9D7', '#7352FF', '#FB9678'],
     theme: getChartsTheme(currentMode),
   };

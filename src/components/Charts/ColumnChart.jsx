@@ -1,17 +1,17 @@
-import { Line } from '@ant-design/plots';
+import { Column } from '@ant-design/plots';
 import { SparklineAreaData, getChartsTheme } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const SparkLine = ({ height, width, color }) => {
+const ColumnChart = ({ height, width, color }) => {
   const { currentMode } = useStateContext();
   const config = {
     data: SparklineAreaData,
     xField: 'x',
     yField: 'yval',
-    smooth: true,
     width,
     height,
     color,
+    columnWidthRatio: 0.8,
     xAxis: {
       tickCount: 0,
       line: { style: { lineWidth: 0 } },
@@ -22,7 +22,8 @@ const SparkLine = ({ height, width, color }) => {
     },
     theme: getChartsTheme(currentMode),
   };
-  return <Line {...config}></Line>;
+
+  return <Column {...config} />;
 };
 
-export default SparkLine;
+export default ColumnChart;
