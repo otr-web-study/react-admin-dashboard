@@ -37,7 +37,7 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem('colorMode', JSON.stringify(colorMode));
   };
 
-  const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
+  const handleClick = (clicked) => setIsClicked((prev) => ({ ...prev, [clicked]: !prev[clicked] }));
 
   useEffect(() => {
     applyStyle('--accent', currentColor.color);
@@ -47,6 +47,10 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     applyClass(currentMode.toLowerCase(), currentMode === 'Light' ? 'dark' : 'light');
   }, [currentMode]);
+
+  useEffect(() => {
+    console.log(isClicked);
+  }, [isClicked]);
 
   return (
     <StateContext.Provider

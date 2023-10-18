@@ -183,7 +183,7 @@ const ECommerce = () => {
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-center mt-5 border-t-1 border-color">
+          <div className="flex justify-between items-center mt-5 border-t-1 border-color dark:border-dark-color">
             <div className="mt-3">
               <Button
                 color="white"
