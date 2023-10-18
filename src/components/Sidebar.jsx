@@ -19,50 +19,44 @@ const Sidebar = () => {
 
   return (
     <div className="ml-3 h-screen overflow-auto pb-10 md:hover:overflow-auto md:overflow-hidden">
-      {activeMenu && (
-        <>
-          <div className="flex justify-between items-center">
-            <Link
-              to="/"
-              onClick={handleCloseSidebar}
-              className="items-center flex gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
-            >
-              <SiShopware />
-              <span>Shoppy</span>
-            </Link>
-            <Tooltip title="Menu" placement="bottom" color="#555555">
-              <button
-                type="button"
-                onClick={() => setActiveMenu((prev) => !prev)}
-                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden"
+      <div className="flex justify-between items-center">
+        <Link
+          to="/"
+          onClick={handleCloseSidebar}
+          className="items-center flex gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
+        >
+          <SiShopware />
+          <span>Shoppy</span>
+        </Link>
+        <Tooltip title="Menu" placement="bottom" color="#555555">
+          <button
+            type="button"
+            onClick={() => setActiveMenu((prev) => !prev)}
+            className="text-2xl p-3 mt-4 rounded-full text-gray-400 dark:text-gray-300 hover:drop-shadow-xl hover:bg-light-gray dark:hover:bg-main-dark-bg transition-all duration-300 900:hidden"
+          >
+            <MdOutlineCancel />
+          </button>
+        </Tooltip>
+      </div>
+      <div className="mt-10">
+        {links.map((item) => (
+          <div key={item.title}>
+            <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
+            {item.links.map((link) => (
+              <NavLink
+                key={`/${link.name}`}
+                to={link.name}
+                onClick={handleCloseSidebar}
+                className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                style={({ isActive }) => (isActive ? { backgroundColor: currentColor.color } : {})}
               >
-                <MdOutlineCancel />
-              </button>
-            </Tooltip>
-          </div>
-          <div className="mt-10">
-            {links.map((item) => (
-              <div key={item.title}>
-                <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
-                {item.links.map((link) => (
-                  <NavLink
-                    key={`/${link.name}`}
-                    to={link.name}
-                    onClick={handleCloseSidebar}
-                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                    style={({ isActive }) =>
-                      isActive ? { backgroundColor: currentColor.color } : {}
-                    }
-                  >
-                    {link.icon}
-                    <span className="capitalize">{link.name}</span>
-                  </NavLink>
-                ))}
-              </div>
+                {link.icon}
+                <span className="capitalize">{link.name}</span>
+              </NavLink>
             ))}
           </div>
-        </>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

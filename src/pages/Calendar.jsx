@@ -27,14 +27,17 @@ const Calendar = () => {
 
   const handleAddNewEvent = () => {
     form.validateFields().then((values) => {
-      const day = values.DayStart ? values.DayStart : dayjs().startOf('day');
+      const day = values.DayStart ? values.DayStart : selectedDate.startOf('day');
       setData([
         ...data,
         {
           Id: crypto.randomUUID(),
           Subject: values.Subject,
           Location: values.Location,
-          CategoryColor: values.CategoryColor.toHexString(),
+          CategoryColor:
+            typeof values.CategoryColor === 'string'
+              ? values.CategoryColor
+              : values.CategoryColor.toHexString(),
           StartTime: day
             .add(values.StartTime.hour(), 'hour')
             .add(values.StartTime.minute(), 'minute')

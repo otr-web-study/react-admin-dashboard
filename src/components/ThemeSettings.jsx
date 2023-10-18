@@ -9,7 +9,7 @@ const ThemeSettings = ({ open, onClose }) => {
 
   return (
     <Drawer open={open} onClose={onClose} closable={false} title={null} width={400}>
-      <div className="flex justify-between items-center py-10 md:py-4 ml-4 dark:text-gray-200">
+      <div className="flex justify-between items-center py-4 ml-4 dark:text-gray-200">
         <p className="font-semibold text-xl">Settings</p>
         <button
           type="button"

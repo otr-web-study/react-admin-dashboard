@@ -18,11 +18,18 @@ const ECommerce = () => {
     <div className="my-12">
       <div className="flex flex-wrap justify-center lg:flex-nowrap">
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repeat bg-cover bg-center">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center gap-2">
             <div>
               <p className="font-bold text-gray-400">Earnings</p>
               <p className="text-2xl">$63,448.37</p>
             </div>
+            <button
+              type="button"
+              style={{ backgroundColor: currentColor.color }}
+              className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
+            >
+              <BsCurrencyDollar />
+            </button>
           </div>
           <div className="mt-6">
             <Button
@@ -117,7 +124,7 @@ const ECommerce = () => {
         </div>
         <div>
           <div
-            className=" rounded-2xl md:w-400 p-4 m-3"
+            className=" rounded-2xl md:max-w-[400px] p-4 m-3"
             style={{ backgroundColor: currentColor.color }}
           >
             <div className="flex justify-between items-center ">
@@ -134,7 +141,7 @@ const ECommerce = () => {
             </div>
           </div>
 
-          <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">
+          <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:max-w-[400px] p-8 m-3 flex justify-center items-center gap-10">
             <div>
               <p className="text-2xl font-semibold ">$43,246</p>
               <p className="text-gray-400">Yearly sales</p>
@@ -190,12 +197,12 @@ const ECommerce = () => {
             <p className="text-gray-400 text-sm">36 Recent Transactions</p>
           </div>
         </div>
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-full max-w-[500px] xl:max-w-[760px]">
           <div className="flex justify-between items-center gap-2 mb-10">
             <p className="text-xl font-semibold">Sales Overview</p>
             <DropDown />
           </div>
-          <div className="flex">
+          <div className="">
             <LineChart height={400} />
           </div>
         </div>

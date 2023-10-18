@@ -3,9 +3,9 @@
 }
 .nav-item,
 .navbar {
-  z-index: 10000;
+  z-index: 100;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .sidebar {
     z-index: 10000000;
   }

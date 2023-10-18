@@ -57,6 +57,9 @@ export default {
       zIndex: {
         max: 10000,
       },
+      screens: {
+        900: '900px',
+      },
     },
   },
   plugins: [
