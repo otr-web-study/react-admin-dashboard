@@ -64,7 +64,7 @@ const Cart = ({ open, onClose }) => {
         <div className="mt-5">
           <Button
             color="white"
-            bgColor={currentColor}
+            bgColor={currentColor.color}
             text="Place Order"
             borderRadius="10px"
             width="full"

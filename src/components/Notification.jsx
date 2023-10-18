@@ -40,7 +40,7 @@ const Notification = ({ onClose }) => {
         <div className="mt-5">
           <Button
             color="white"
-            bgColor={currentColor}
+            bgColor={currentColor.color}
             text="See all notifications"
             borderRadius="10px"
             width="full"

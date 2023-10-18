@@ -51,7 +51,7 @@ const UserProfile = ({ onClose }) => {
       <div className="mt-5">
         <Button
           color="white"
-          bgColor={currentColor}
+          bgColor={currentColor.color}
           text="Logout"
           borderRadius="10px"
           width="full"

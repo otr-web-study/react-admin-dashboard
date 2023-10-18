@@ -46,7 +46,7 @@ const Chat = ({ onClose }) => {
         <div className="mt-5">
           <Button
             color="white"
-            bgColor={currentColor}
+            bgColor={currentColor.color}
             text="See all messages"
             borderRadius="10px"
             width="full"
