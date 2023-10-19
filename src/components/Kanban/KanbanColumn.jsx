@@ -22,7 +22,10 @@ const KanbanColumn = ({ column, tasks, onExpand }) => {
     style['opacity'] = 0.4;
   }
 
-  const content = tasks ? tasks.map((t) => <KanbanTask key={t.Id} task={t} />) : null;
+  const content =
+    tasks && (column.isExpanded ?? true)
+      ? tasks.map((t) => <KanbanTask key={t.Id} task={t} />)
+      : null;
 
   const tasksIds = useMemo(() => (tasks ? tasks.map((t) => t.Id) : []), [tasks]);
 
